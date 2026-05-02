@@ -11,6 +11,6 @@ namespace Tarea3_GestionEmpleados_C35485.Repositories
         int ContarTotal(string? busqueda);
         void Agregar(Empleado empleado);
         void Actualizar(Empleado empleado);
-        void Eliminar(int id);
+        void ToggleActivo(int id);
     }
 }

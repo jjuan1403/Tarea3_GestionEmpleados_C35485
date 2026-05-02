@@ -52,7 +52,7 @@ namespace Tarea3_GestionEmpleados_C35485.Repositories
             _context.SaveChanges();
         }
 
-        public void Eliminar(int id)
+        public void ToggleActivo(int id)
         {
             var empleado = ObtenerPorId(id);
 

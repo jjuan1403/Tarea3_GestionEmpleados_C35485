@@ -71,7 +71,7 @@ namespace Tarea3_GestionEmpleados_C35485.Controllers
         [HttpPost]
         public IActionResult ToggleActivo(int id)
         {
-            _repo.Eliminar(id);
+            _repo.ToggleActivo(id);
             return RedirectToAction("Index");
         }
     }
