@@ -1,0 +1,81 @@
+﻿@model List<Tarea3_GestionEmpleados_C35485.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<h1>Gestión de Empleados</h1>
+
+<form method="get" asp-action="Index">
+    <input type="text" name="busqueda" value="@ViewBag.Busqueda" placeholder="Buscar por nombre, apellidos o departamento" />
+    <button type="submit">Buscar</button>
+    <a asp-action="Index">Limpiar</a>
+</form>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre completo</th>
+            <th>Departamento</th>
+            <th>Salario</th>
+            <th>Fecha ingreso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empleado in Model)
+        {
+            <tr>
+                <td>@empleado.NombreCompleto</td>
+                <td>@empleado.Departamento</td>
+                <td>@empleado.Salario</td>
+                <td>@empleado.FechaIngreso.ToShortDateString()</td>
+                <td>
+                    @if (empleado.Activo)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Dado de Baja</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@empleado.Id" class="btn btn-warning btn-sm">Editar</a>
+
+                    <form asp-action="ToggleActivo" asp-route-id="@empleado.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm @(empleado.Activo ? "btn-danger" : "btn-success")">
+                            @(empleado.Activo ? "Dar de Baja" : "Activar")
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    Página @ViewBag.PaginaActual de @ViewBag.TotalPaginas | Total: @ViewBag.TotalRegistros empleados
+</p>
+
+<a asp-action="Index"
+       asp-route-busqueda="@ViewBag.Busqueda"
+       asp-route-pagina="@(ViewBag.PaginaActual - 1)"
+       class="btn btn-outline-primary @(ViewBag.PaginaActual <= 1 ? "disabled" : "")">
+    Anterior
+</a>
+
+<a asp-action="Index"
+       asp-route-busqueda="@ViewBag.Busqueda"
+       asp-route-pagina="@(ViewBag.PaginaActual + 1)"
+       class="btn btn-outline-primary @(ViewBag.PaginaActual >= ViewBag.TotalPaginas ? "disabled" : "")">
+    Siguiente
+</a>
+
+<br />
+<br />
+
+<a asp-action="Create" class="btn btn-primary">Agregar empleado</a>

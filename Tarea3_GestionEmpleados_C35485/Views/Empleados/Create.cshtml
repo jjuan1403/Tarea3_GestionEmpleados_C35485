@@ -1,0 +1,34 @@
+﻿@model Tarea3_GestionEmpleados_C35485.Models.Empleado
+
+<h2>Crear Empleado</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Nombre</label>
+        <input asp-for="Nombre" />
+        <span asp-validation-for="Nombre"></span>
+    </div>
+
+    <div>
+        <label>Apellidos</label>
+        <input asp-for="Apellidos" />
+        <span asp-validation-for="Apellidos"></span>
+    </div>
+
+    <div>
+        <label>Departamento</label>
+        <input asp-for="Departamento" />
+        <span asp-validation-for="Departamento"></span>
+    </div>
+
+    <div>
+        <label>Salario</label>
+        <input asp-for="Salario" />
+        <span asp-validation-for="Salario"></span>
+    </div>
+
+    <br />
+
+    <button type="submit">Guardar</button>
+    <a asp-action="Index">Volver</a>
+</form>
