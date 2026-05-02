@@ -24,3 +24,6 @@ Los resultados se muestran paginados en grupos de 5 registros por página.
 Ejemplo de URL con búsqueda:
 
 `/Empleados?busqueda=TI&pagina=1`
+
+## Autor
+Juan Murillo
